@@ -4,7 +4,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
-ABallisticsSystemProjectile::ABallisticsSystemProjectile() 
+ABallisticsSystemProjectile::ABallisticsSystemProjectile()
 {
 	// Use a sphere as a simple collision representation
 	CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
@@ -27,8 +27,33 @@ ABallisticsSystemProjectile::ABallisticsSystemProjectile()
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
 
+	SM_BulletBody = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Body"));
+
 	// Die after 3 seconds by default
-	InitialLifeSpan = 3.0f;
+	InitialLifeSpan = 30.0f;
+
+	switch (BulletCaliber)
+	{
+	case EBulletCaliber::S_Caliber_556mm: {
+		Mass = 5;
+
+	}
+	case EBulletCaliber::S_Caliber_762mm: {
+		Mass = 8.2*FMath::Pow(10,-3);
+		crossSectionArea = 4.558 * FMath::Pow(10, -5);
+		dragCoefficient = 0.05;
+	}
+	case EBulletCaliber::S_Caliber_9mm: {
+		Mass = 7;
+
+	}
+	case EBulletCaliber::S_PaintBall: {
+		Mass = 3.2*FMath::Pow(10,-3);
+		crossSectionArea = 2.343*FMath::Pow(10,-4);
+		dragCoefficient = 0.47f;
+	}
+	}
+	BulletCoefficient = BulletCoefficientCalculator(Mass, dragCoefficient, crossSectionArea);
 }
 
 void ABallisticsSystemProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
@@ -40,4 +65,11 @@ void ABallisticsSystemProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Ot
 
 		Destroy();
 	}
+}
+
+float ABallisticsSystemProjectile::BulletCoefficientCalculator(float mass, float drag, float crossSection)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Re calculate"));
+	float temp = crossSection * drag;
+	return mass / temp;
 }

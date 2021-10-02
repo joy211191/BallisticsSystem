@@ -2,35 +2,24 @@
 
 #pragma once
 
-#include "BulletType.h"
+#include "BarrelType.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Bullet.generated.h"
+#include "GunScript.generated.h"
 
 UCLASS()
-class BALLISTICSSYSTEM_API ABullet : public AActor
+class BALLISTICSSYSTEM_API AGunScript : public AActor
 {
 	GENERATED_BODY()
-
-
+	
 public:	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		TEnumAsByte<EBulletCaliber> BulletCaliber;
-
-	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
-	float Mass;
+		TEnumAsByte<EBarrelType> BarrelType;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	float dragCoefficient;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		float crossSectionArea;
-
-	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
-	float BulletCoefficient;
-
+		float BarrelLength;
 	// Sets default values for this actor's properties
-	ABullet();
+	AGunScript();
 
 protected:
 	// Called when the game starts or when spawned

@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "BarrelType.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "BallisticsSystemCharacter.generated.h"
@@ -74,6 +75,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category=Projectile)
 	TSubclassOf<class ABallisticsSystemProjectile> ProjectileClass;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TEnumAsByte<EBarrelType> Barrell=EBarrelType::S_BarrelType_PaintBall;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float BarrelLength;
+
 	/** Sound to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
 	USoundBase* FireSound;
@@ -97,7 +104,7 @@ protected:
 	/** Handles moving forward/backward */
 	void MoveForward(float Val);
 
-	/** Handles stafing movement, left and right */
+	/** Handles strafing movement, left and right */
 	void MoveRight(float Val);
 
 	/**

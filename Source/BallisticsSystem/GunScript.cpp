@@ -1,39 +1,37 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Bullet.h"
+#include "GunScript.h"
 
 // Sets default values
-ABullet::ABullet()
+AGunScript::AGunScript()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	switch (BulletCaliber)
+	switch (BarrelType)
 	{
-		case EBulletCaliber::S_Caliber_556mm: {
-			Mass = 5;
-			//BulletCoefficient
-		}
-		case EBulletCaliber::S_Caliber_762mm: {
-			Mass = 6;
-		}
-		case EBulletCaliber::S_Caliber_9mm: {
-			Mass = 7;
-		}
+	case EBarrelType::S_BarrelType_A: {
+		BarrelLength = 10;
+	}
+	case EBarrelType::S_BarrelType_B: {
+		BarrelLength = 12;
+	}
+	case EBarrelType::S_BarrelType_C: {
+		BarrelLength = 15;
+	}
 	}
 }
 
 // Called when the game starts or when spawned
-void ABullet::BeginPlay()
+void AGunScript::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void ABullet::Tick(float DeltaTime)
+void AGunScript::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
-

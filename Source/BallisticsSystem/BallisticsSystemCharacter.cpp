@@ -82,6 +82,26 @@ ABallisticsSystemCharacter::ABallisticsSystemCharacter()
 
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
+
+
+	switch (Barrell)
+	{
+	case EBarrelType::S_BarrelType_A: {
+		BarrelLength = 5;
+
+	}
+	case EBarrelType::S_BarrelType_B: {
+		BarrelLength = 6;
+
+	}
+	case EBarrelType::S_BarrelType_C: {
+		BarrelLength = 7;
+
+	}
+	case EBarrelType::S_BarrelType_PaintBall: {
+		BarrelLength = 10;
+	}
+	}
 }
 
 void ABallisticsSystemCharacter::BeginPlay()
@@ -140,6 +160,11 @@ void ABallisticsSystemCharacter::SetupPlayerInputComponent(class UInputComponent
 
 void ABallisticsSystemCharacter::OnFire()
 {
+
+	//ALL MAGIC HAPPENS HERE
+
+
+
 	// try and fire a projectile
 	if (ProjectileClass != nullptr)
 	{
@@ -150,7 +175,9 @@ void ABallisticsSystemCharacter::OnFire()
 			{
 				const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
 				const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
-				World->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+				ABallisticsSystemProjectile* projectile= World->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
+				projectile->BulletCaliber = EBulletCaliber::S_Caliber_762mm;
+				projectile->BulletCoefficient=projectile->BulletCoefficientCalculator(projectile->Mass, projectile->dragCoefficient, projectile->crossSectionArea);
 			}
 			else
 			{
@@ -163,7 +190,9 @@ void ABallisticsSystemCharacter::OnFire()
 				ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 
 				// spawn the projectile at the muzzle
-				World->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+				ABallisticsSystemProjectile* projectile=World->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+				projectile->BulletCaliber = EBulletCaliber::S_Caliber_762mm;
+				projectile->BulletCoefficient = projectile->BulletCoefficientCalculator(projectile->Mass, projectile->dragCoefficient, projectile->crossSectionArea);
 			}
 		}
 	}
