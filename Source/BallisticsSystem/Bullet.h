@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "BulletType.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Bullet.generated.h"
@@ -10,11 +11,14 @@ UCLASS()
 class BALLISTICSSYSTEM_API ABullet : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
 
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	//class BulletDetailsStatic* bulletDetailsStatic;
+
+public:	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TEnumAsByte<EBulletCaliber> BulletCaliber;
+
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
+	float Mass;
 
 	// Sets default values for this actor's properties
 	ABullet();
