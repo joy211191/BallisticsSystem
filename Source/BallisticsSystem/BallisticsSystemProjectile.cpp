@@ -10,7 +10,7 @@ ABallisticsSystemProjectile::ABallisticsSystemProjectile()
 	CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
 	CollisionComp->InitSphereRadius(5.0f);
 	CollisionComp->BodyInstance.SetCollisionProfileName("Projectile");
-	CollisionComp->OnComponentHit.AddDynamic(this, &ABallisticsSystemProjectile::OnHit);		// set up a notification for when this component hits something blocking
+	CollisionComp->OnComponentHit.AddDynamic(this, &ABallisticsSystemProjectile::OnHit); // set up a notification for when this component hits something blocking
 
 	// Players can't walk on it
 	CollisionComp->SetWalkableSlopeOverride(FWalkableSlopeOverride(WalkableSlope_Unwalkable, 0.f));
@@ -27,36 +27,11 @@ ABallisticsSystemProjectile::ABallisticsSystemProjectile()
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
 
-	SM_BulletBody = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Body"));
-
 	// Die after 3 seconds by default
 	InitialLifeSpan = 30.0f;
-
-	switch (BulletCaliber)
-	{
-	case EBulletCaliber::S_Caliber_556mm: {
-		Mass = 5;
-
-	}
-	case EBulletCaliber::S_Caliber_762mm: {
-		Mass = 8.2*FMath::Pow(10,-3);
-		crossSectionArea = 4.558 * FMath::Pow(10, -5);
-		dragCoefficient = 0.05;
-	}
-	case EBulletCaliber::S_Caliber_9mm: {
-		Mass = 7;
-
-	}
-	case EBulletCaliber::S_PaintBall: {
-		Mass = 3.2*FMath::Pow(10,-3);
-		crossSectionArea = 2.343*FMath::Pow(10,-4);
-		dragCoefficient = 0.47f;
-	}
-	}
-	BulletCoefficient = BulletCoefficientCalculator(Mass, dragCoefficient, crossSectionArea);
 }
 
-void ABallisticsSystemProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+void ABallisticsSystemProjectile::OnHit(UPrimitiveComponent *HitComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse, const FHitResult &Hit)
 {
 	// Only add impulse and destroy projectile if we hit a physics
 	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
@@ -69,7 +44,39 @@ void ABallisticsSystemProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* Ot
 
 float ABallisticsSystemProjectile::BulletCoefficientCalculator(float mass, float drag, float crossSection)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Re calculate"));
 	float temp = crossSection * drag;
+	UE_LOG(LogTemp, Warning, TEXT("%f"), temp);
 	return mass / temp;
+}
+
+void ABallisticsSystemProjectile::Initialize(EBulletCaliber BulletCaliber)
+{
+	switch (BulletCaliber)
+	{
+		case EBulletCaliber::S_Caliber_556mm:
+		{
+			Mass = 0.02;
+			crossSectionArea = 0.015;
+			dragCoefficient = 0.05;
+		}
+		case EBulletCaliber::S_Caliber_762mm:
+		{
+			Mass = 0.0181;
+			crossSectionArea = 0.176;
+			dragCoefficient = 0.05;
+		}
+		case EBulletCaliber::S_Caliber_9mm:
+		{
+			Mass = 0.012;
+			crossSectionArea = 0.02;
+			dragCoefficient = 0.05;
+		}
+		case EBulletCaliber::S_PaintBall:
+		{
+			Mass = 0.007;
+			crossSectionArea = 0.363;
+			dragCoefficient = 0.47f;
+		}
+	}
+	BulletCoefficient = BulletCoefficientCalculator(Mass, dragCoefficient, crossSectionArea);
 }

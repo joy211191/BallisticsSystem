@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "BulletType.h"
 #include "BarrelType.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
@@ -53,6 +54,9 @@ class ABallisticsSystemCharacter : public ACharacter
 	UMotionControllerComponent* L_MotionController;
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TEnumAsByte<EBulletCaliber> CurrentBulletCaliber;
+
 	ABallisticsSystemCharacter();
 
 protected:
@@ -106,6 +110,8 @@ protected:
 
 	/** Handles strafing movement, left and right */
 	void MoveRight(float Val);
+
+	void SwitchBullet();
 
 	/**
 	 * Called via input to turn at a given rate.

@@ -1,0 +1,97 @@
+[
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystem.Build.cs",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystem.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystem.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystemCharacter.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystemCharacter.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystemGameMode.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystemGameMode.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystemHUD.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystemHUD.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystemProjectile.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BallisticsSystemProjectile.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BarrelType.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BarrelType.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\Bullet.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\Bullet.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BulletType.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\BulletType.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\GunScript.cpp",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	},
+	{
+		"file": "D:\\\\Docs\\\\Unreal Projects\\\\BallisticsSystem\\\\Source\\\\BallisticsSystem\\\\GunScript.h",
+		"command": "cl.exe @\"D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem\\BallisticsSystem.182.rsp\"",
+		"directory": "D:\\UE4\\UE_4.26\\Engine\\Source"
+	}
+]

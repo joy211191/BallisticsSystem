@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "BallisticsSystemEditor Editor Win64 Development (BallisticsSystem)",
+            "intelliSenseMode": "msvc-x64",
+            "compileCommands": "D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_BallisticsSystem.json",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Win32",
+            "intelliSenseMode": "msvc-x64",
+            "compileCommands": "D:\\Docs\\Unreal Projects\\BallisticsSystem\\.vscode\\compileCommands_Default.json",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

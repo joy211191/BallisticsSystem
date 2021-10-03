@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "BallisticsSystem",
+			"path": "."
+		},
+		{
+			"name": "UE4",
+			"path": "D:\\UE4\\UE_4.26"
+		}
+	],
+	"settings": {
+		"typescript.tsc.autoDetect": "off",
+		"clang-format.executable": "clang",
+		"editor.defaultFormatter": "ms-vscode.cpptools"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp"
+		]
+	}
+}

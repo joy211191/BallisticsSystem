@@ -26,7 +26,7 @@ ABallisticsSystemCharacter::ABallisticsSystemCharacter()
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
 
-	// Create a CameraComponent	
+	// Create a CameraComponent
 	FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
 	FirstPersonCameraComponent->SetupAttachment(GetCapsuleComponent());
 	FirstPersonCameraComponent->SetRelativeLocation(FVector(-39.56f, 1.75f, 64.f)); // Position the camera
@@ -43,7 +43,7 @@ ABallisticsSystemCharacter::ABallisticsSystemCharacter()
 
 	// Create a gun mesh component
 	FP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FP_Gun"));
-	FP_Gun->SetOnlyOwnerSee(false);			// otherwise won't be visible in the multiplayer
+	FP_Gun->SetOnlyOwnerSee(false); // otherwise won't be visible in the multiplayer
 	FP_Gun->bCastDynamicShadow = false;
 	FP_Gun->CastShadow = false;
 	// FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
@@ -56,7 +56,7 @@ ABallisticsSystemCharacter::ABallisticsSystemCharacter()
 	// Default offset from the character location for projectiles to spawn
 	GunOffset = FVector(100.0f, 0.0f, 10.0f);
 
-	// Note: The ProjectileClass and the skeletal mesh/anim blueprints for Mesh1P, FP_Gun, and VR_Gun 
+	// Note: The ProjectileClass and the skeletal mesh/anim blueprints for Mesh1P, FP_Gun, and VR_Gun
 	// are set in the derived blueprint asset named MyCharacter to avoid direct content references in C++.
 
 	// Create VR Controllers.
@@ -69,7 +69,7 @@ ABallisticsSystemCharacter::ABallisticsSystemCharacter()
 	// Create a gun and attach it to the right-hand VR controller.
 	// Create a gun mesh component
 	VR_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("VR_Gun"));
-	VR_Gun->SetOnlyOwnerSee(false);			// otherwise won't be visible in the multiplayer
+	VR_Gun->SetOnlyOwnerSee(false); // otherwise won't be visible in the multiplayer
 	VR_Gun->bCastDynamicShadow = false;
 	VR_Gun->CastShadow = false;
 	VR_Gun->SetupAttachment(R_MotionController);
@@ -78,27 +78,27 @@ ABallisticsSystemCharacter::ABallisticsSystemCharacter()
 	VR_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("VR_MuzzleLocation"));
 	VR_MuzzleLocation->SetupAttachment(VR_Gun);
 	VR_MuzzleLocation->SetRelativeLocation(FVector(0.000004, 53.999992, 10.000000));
-	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
+	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f)); // Counteract the rotation of the VR gun model.
 
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
 
-
 	switch (Barrell)
 	{
-	case EBarrelType::S_BarrelType_A: {
+	case EBarrelType::S_BarrelType_A:
+	{
 		BarrelLength = 5;
-
 	}
-	case EBarrelType::S_BarrelType_B: {
+	case EBarrelType::S_BarrelType_B:
+	{
 		BarrelLength = 6;
-
 	}
-	case EBarrelType::S_BarrelType_C: {
+	case EBarrelType::S_BarrelType_C:
+	{
 		BarrelLength = 7;
-
 	}
-	case EBarrelType::S_BarrelType_PaintBall: {
+	case EBarrelType::S_BarrelType_PaintBall:
+	{
 		BarrelLength = 10;
 	}
 	}
@@ -106,7 +106,7 @@ ABallisticsSystemCharacter::ABallisticsSystemCharacter()
 
 void ABallisticsSystemCharacter::BeginPlay()
 {
-	// Call the base class  
+	// Call the base class
 	Super::BeginPlay();
 
 	//Attach gun mesh component to Skeleton, doing it here because the skeleton is not yet created in the constructor
@@ -128,7 +128,7 @@ void ABallisticsSystemCharacter::BeginPlay()
 //////////////////////////////////////////////////////////////////////////
 // Input
 
-void ABallisticsSystemCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+void ABallisticsSystemCharacter::SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent)
 {
 	// set up gameplay key bindings
 	check(PlayerInputComponent);
@@ -144,14 +144,12 @@ void ABallisticsSystemCharacter::SetupPlayerInputComponent(class UInputComponent
 	EnableTouchscreenMovement(PlayerInputComponent);
 
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ABallisticsSystemCharacter::OnResetVR);
+	//PlayerInputComponent->BindAction("SwitchBullet", IE_Pressed, this, &ABallisticsSystemCharacter::SwitchBullet);
 
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &ABallisticsSystemCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ABallisticsSystemCharacter::MoveRight);
 
-	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
-	// "turn" handles devices that provide an absolute delta, such as a mouse.
-	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("TurnRate", this, &ABallisticsSystemCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
@@ -163,37 +161,25 @@ void ABallisticsSystemCharacter::OnFire()
 
 	//ALL MAGIC HAPPENS HERE
 
-
-
 	// try and fire a projectile
 	if (ProjectileClass != nullptr)
 	{
 		UWorld* const World = GetWorld();
 		if (World != nullptr)
 		{
-			if (bUsingMotionControllers)
-			{
-				const FRotator SpawnRotation = VR_MuzzleLocation->GetComponentRotation();
-				const FVector SpawnLocation = VR_MuzzleLocation->GetComponentLocation();
-				ABallisticsSystemProjectile* projectile= World->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, SpawnLocation, SpawnRotation);
-				projectile->BulletCaliber = EBulletCaliber::S_Caliber_762mm;
-				projectile->BulletCoefficient=projectile->BulletCoefficientCalculator(projectile->Mass, projectile->dragCoefficient, projectile->crossSectionArea);
-			}
-			else
-			{
-				const FRotator SpawnRotation = GetControlRotation();
-				// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-				const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
 
-				//Set Spawn Collision Handling Override
-				FActorSpawnParameters ActorSpawnParams;
-				ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+			const FRotator SpawnRotation = GetControlRotation();
+			// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
+			const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
 
-				// spawn the projectile at the muzzle
-				ABallisticsSystemProjectile* projectile=World->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-				projectile->BulletCaliber = EBulletCaliber::S_Caliber_762mm;
-				projectile->BulletCoefficient = projectile->BulletCoefficientCalculator(projectile->Mass, projectile->dragCoefficient, projectile->crossSectionArea);
-			}
+			//Set Spawn Collision Handling Override
+			FActorSpawnParameters ActorSpawnParams;
+			ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+
+			// spawn the projectile at the muzzle
+			ABallisticsSystemProjectile* projectile = World->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+			projectile->Initialize(CurrentBulletCaliber);
+			//projectile->BulletCoefficient = projectile->BulletCoefficientCalculator(projectile->Mass, projectile->dragCoefficient, projectile->crossSectionArea);
 		}
 	}
 
@@ -207,7 +193,7 @@ void ABallisticsSystemCharacter::OnFire()
 	if (FireAnimation != nullptr)
 	{
 		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();
+		UAnimInstance *AnimInstance = Mesh1P->GetAnimInstance();
 		if (AnimInstance != nullptr)
 		{
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
@@ -301,6 +287,30 @@ void ABallisticsSystemCharacter::MoveRight(float Value)
 	}
 }
 
+void ABallisticsSystemCharacter::SwitchBullet()
+{
+	switch (CurrentBulletCaliber)
+	{
+		case EBulletCaliber::S_Caliber_556mm:
+		{
+			CurrentBulletCaliber = S_Caliber_762mm;
+		}
+		case EBulletCaliber::S_Caliber_762mm:{
+			CurrentBulletCaliber = S_Caliber_9mm;
+		}
+		case EBulletCaliber::S_Caliber_9mm:
+		{
+			CurrentBulletCaliber = S_PaintBall;
+		}
+		case EBulletCaliber::S_PaintBall:
+		{
+			CurrentBulletCaliber = S_Caliber_556mm;
+		}
+	}
+	int temp = (int)CurrentBulletCaliber;
+	UE_LOG(LogTemp, Warning, TEXT("Bullet Caliber Changed to %d"),temp);
+}
+
 void ABallisticsSystemCharacter::TurnAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
@@ -313,7 +323,7 @@ void ABallisticsSystemCharacter::LookUpAtRate(float Rate)
 	AddControllerPitchInput(Rate * BaseLookUpRate * GetWorld()->GetDeltaSeconds());
 }
 
-bool ABallisticsSystemCharacter::EnableTouchscreenMovement(class UInputComponent* PlayerInputComponent)
+bool ABallisticsSystemCharacter::EnableTouchscreenMovement(class UInputComponent *PlayerInputComponent)
 {
 	if (FPlatformMisc::SupportsTouchInput() || GetDefault<UInputSettings>()->bUseMouseForTouch)
 	{
@@ -324,6 +334,6 @@ bool ABallisticsSystemCharacter::EnableTouchscreenMovement(class UInputComponent
 		//PlayerInputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ABallisticsSystemCharacter::TouchUpdate);
 		return true;
 	}
-	
+
 	return false;
 }

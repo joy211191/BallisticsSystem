@@ -26,9 +26,6 @@ class ABallisticsSystemProjectile : public AActor
 public:
 	ABallisticsSystemProjectile();
 
-	UPROPERTY(EditAnywhere)
-		class UStaticMeshComponent* SM_BulletBody;
-
 	/** called when projectile hits something */
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
@@ -38,21 +35,19 @@ public:
 	/** Returns ProjectileMovement subobject **/
 	UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		TEnumAsByte<EBulletCaliber> BulletCaliber=EBulletCaliber::S_Caliber_762mm;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bullet Coefficient")
 		float Mass;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bullet Coefficient")
 		float dragCoefficient;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bullet Coefficient")
 		float crossSectionArea;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bullet Coefficient")
 		float BulletCoefficient;
 
 	float BulletCoefficientCalculator(float mass, float drag, float crossSection);
-};
 
+	void Initialize(EBulletCaliber BulletCaliber);
+};

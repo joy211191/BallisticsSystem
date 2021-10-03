@@ -1,0 +1,128 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "BallisticsSystem (Debug)",
+			"request": "launch",
+			"preLaunchTask": "BallisticsSystem Win64 Debug Build",
+			"program": "D:\\Docs\\Unreal Projects\\BallisticsSystem\\Binaries\\Win64\\UE4-Win64-Debug.exe",
+			"args": [
+			],
+			"cwd": "D:\\UE4\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\UE4\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "BallisticsSystem (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "BallisticsSystem Win64 DebugGame Build",
+			"program": "D:\\Docs\\Unreal Projects\\BallisticsSystem\\Binaries\\Win64\\UE4-Win64-DebugGame.exe",
+			"args": [
+			],
+			"cwd": "D:\\UE4\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\UE4\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "BallisticsSystem (Development)",
+			"request": "launch",
+			"preLaunchTask": "BallisticsSystem Win64 Development Build",
+			"program": "D:\\Docs\\Unreal Projects\\BallisticsSystem\\Binaries\\Win64\\UE4.exe",
+			"args": [
+			],
+			"cwd": "D:\\UE4\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\UE4\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "BallisticsSystem (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "BallisticsSystem Win64 Shipping Build",
+			"program": "D:\\Docs\\Unreal Projects\\BallisticsSystem\\Binaries\\Win64\\UE4-Win64-Shipping.exe",
+			"args": [
+			],
+			"cwd": "D:\\UE4\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\UE4\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "BallisticsSystem (Test)",
+			"request": "launch",
+			"preLaunchTask": "BallisticsSystem Win64 Test Build",
+			"program": "D:\\Docs\\Unreal Projects\\BallisticsSystem\\Binaries\\Win64\\UE4-Win64-Test.exe",
+			"args": [
+			],
+			"cwd": "D:\\UE4\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\UE4\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "BallisticsSystemEditor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "BallisticsSystemEditor Win64 Debug Build",
+			"program": "D:\\UE4\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor-Win64-Debug.exe",
+			"args": [
+				"D:\\Docs\\Unreal Projects\\BallisticsSystem\\BallisticsSystem.uproject"
+			],
+			"cwd": "D:\\UE4\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\UE4\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "BallisticsSystemEditor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "BallisticsSystemEditor Win64 DebugGame Build",
+			"program": "D:\\UE4\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor-Win64-DebugGame.exe",
+			"args": [
+				"D:\\Docs\\Unreal Projects\\BallisticsSystem\\BallisticsSystem.uproject"
+			],
+			"cwd": "D:\\UE4\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\UE4\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "BallisticsSystemEditor (Development)",
+			"request": "launch",
+			"preLaunchTask": "BallisticsSystemEditor Win64 Development Build",
+			"program": "D:\\UE4\\UE_4.26\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"D:\\Docs\\Unreal Projects\\BallisticsSystem\\BallisticsSystem.uproject"
+			],
+			"cwd": "D:\\UE4\\UE_4.26",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "D:\\UE4\\UE_4.26\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "clr",
+			"request": "launch",
+			"program": "D:\\UE4\\UE_4.26\\Engine\\Binaries\\DotNET\\UnrealBuildTool.exe",
+			"console": "externalTerminal",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=D:\\Docs\\Unreal Projects\\BallisticsSystem\\BallisticsSystem.uproject",
+				"-game",
+				"-engine"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+			"cwd": "D:\\UE4\\UE_4.26"
+		}
+	]
+}
