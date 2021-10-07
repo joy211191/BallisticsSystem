@@ -3,7 +3,9 @@
 #pragma once
 
 #include "BulletType.h"
+#include "MouseDeltaValues.h"
 #include "CoreMinimal.h"
+#include "GameFramework/PlayerController.h"
 #include "GameFramework/Character.h"
 #include "ThirdPersonController.generated.h"
 
@@ -17,6 +19,9 @@ public:
 	AThirdPersonController();
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 	class USkeletalMeshComponent* skeletalMesh;
+
+	UPROPERTY()
+		class AMouseDeltaValues* aMouseDelta;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 		USceneComponent* FP_MuzzleLocation;
@@ -44,6 +49,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		FVector GunOffset;
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -55,10 +61,9 @@ protected:
 	void TurnRate(float Rate);
 	void LookRate(float Rate);
 
+	void OnFire();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	void OnFire();
-
 };

@@ -5,6 +5,7 @@
 #include "Animation/AnimInstance.h"
 #include "ThirdPersonController.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/PlayerController.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -44,14 +45,12 @@ void AThirdPersonController::BeginPlay()
 {
 	Super::BeginPlay();
 	FP_Gun->AttachToComponent(skeletalMesh, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
-	
 }
 
 // Called every frame
 void AThirdPersonController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -63,56 +62,20 @@ void AThirdPersonController::SetupPlayerInputComponent(UInputComponent* PlayerIn
 	PlayerInputComponent->BindAxis("MoveRight", this, &AThirdPersonController::MoveRight);
 
 	PlayerInputComponent->BindAxis("TurnRate", this, &AThirdPersonController::TurnRate);
-	//PlayerInputComponent->BindAxis("LookUpRate", this, &AThirdPersonController::LookRate);
+	PlayerInputComponent->BindAxis("LookUpRate", this, &AThirdPersonController::LookRate);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AThirdPersonController::OnFire);
-
 }
 
 void AThirdPersonController::OnFire()
 {
-	//ALL MAGIC HAPPENS HERE
-
-// try and fire a projectile
-	
-	if (ProjectileClass != nullptr)
-	{
-		UWorld* const World = GetWorld();
-		if (World != nullptr)
-		{
-			const FRotator SpawnRotation = GetControlRotation();
-			// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-			const FVector SpawnLocation = FP_MuzzleLocation->GetComponentLocation();
-
-			//Set Spawn Collision Handling Override
-			FActorSpawnParameters ActorSpawnParams;
-			ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
-
-			// spawn the projectile at the muzzle
-			ABallisticsSystemProjectile* projectile = World->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-			//projectile->FireInDirection(LaunchDirection);
-		}
-	}
-
-	// try and play the sound if specified
-	if (FireSound != nullptr)
-	{
-		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
-	}
-
-	// try and play a firing animation if specified
-	if (FireAnimation != nullptr)
-	{
-		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = skeletalMesh->GetAnimInstance();
-		if (AnimInstance != nullptr)
-		{
-			AnimInstance->Montage_Play(FireAnimation, 1.f);
-		}
-	}
+	FVector temp= GetActorLocation() + (GetActorForwardVector()*100);
+	FActorSpawnParameters ActorSpawnParams;
+	ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+	ABallisticsSystemProjectile* projectile = GetWorld()->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, temp, GetActorRotation(), ActorSpawnParams);
 }
 
 void AThirdPersonController::MoveForward(float value)
