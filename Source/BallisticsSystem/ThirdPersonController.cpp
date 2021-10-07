@@ -62,20 +62,14 @@ void AThirdPersonController::SetupPlayerInputComponent(UInputComponent* PlayerIn
 	PlayerInputComponent->BindAxis("MoveRight", this, &AThirdPersonController::MoveRight);
 
 	PlayerInputComponent->BindAxis("TurnRate", this, &AThirdPersonController::TurnRate);
-	PlayerInputComponent->BindAxis("LookUpRate", this, &AThirdPersonController::LookRate);
+	//PlayerInputComponent->BindAxis("LookUpRate", this, &AThirdPersonController::LookRate);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AThirdPersonController::OnFire);
 }
 
 void AThirdPersonController::OnFire()
 {
-	FVector temp= GetActorLocation() + (GetActorForwardVector()*100);
-	FActorSpawnParameters ActorSpawnParams;
-	ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
-	ABallisticsSystemProjectile* projectile = GetWorld()->SpawnActor<ABallisticsSystemProjectile>(ProjectileClass, temp, GetActorRotation(), ActorSpawnParams);
 }
 
 void AThirdPersonController::MoveForward(float value)
@@ -101,7 +95,7 @@ void AThirdPersonController::TurnRate(float Rate)
 
 void AThirdPersonController::LookRate(float Rate)
 {
-	AddActorLocalRotation(FRotator(0, Rate, 0));
-	AddControllerPitchInput(Rate * GetWorld()->GetDeltaSeconds() * lookRate);
+	
+	//AddControllerPitchInput(Rate * GetWorld()->GetDeltaSeconds() * lookRate);
 }
 

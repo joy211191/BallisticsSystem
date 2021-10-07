@@ -23,7 +23,7 @@ public:
 	UPROPERTY()
 		class AMouseDeltaValues* aMouseDelta;
 
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 		USceneComponent* FP_MuzzleLocation;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
