@@ -49,6 +49,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		FVector GunOffset;
 
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
+	float forwardAxisValue;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -60,8 +63,6 @@ protected:
 	void MoveRight(float value);
 	void TurnRate(float Rate);
 	void LookRate(float Rate);
-
-	void OnFire();
 
 public:	
 	// Called every frame
