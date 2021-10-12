@@ -32,8 +32,8 @@ AThirdPersonController::AThirdPersonController()
 	// FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
 	FP_Gun->SetupAttachment(RootComponent);
 
-	//FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
-	//FP_MuzzleLocation->SetupAttachment(FP_Gun);
+	FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
+	FP_MuzzleLocation->SetupAttachment(FP_Gun);
 	//FP_MuzzleLocation->SetRelativeLocation(FVector(0.2f, 48.4f, -10.6f));
 
 	turnRate = 45;
@@ -88,13 +88,12 @@ void AThirdPersonController::MoveRight(float value)
 
 void AThirdPersonController::TurnRate(float Rate)
 {
-	/*UE_LOG(LogTemp, Warning, TEXT("%f"), &Rate);
-	if(FMath::Abs(Rate)>0.5f)
-		AddActorLocalRotation(FRotator(0, Rate, 0));*/
+	AddActorLocalRotation(FRotator(0, Rate, 0));
 }
 
 void AThirdPersonController::LookRate(float Rate)
 {
-/*	if (FMath::Abs(Rate) > 0.5f)
-		AddControllerPitchInput(Rate * GetWorld()->GetDeltaSeconds() * lookRate);?*/
+	
+	//AddControllerPitchInput(Rate * GetWorld()->GetDeltaSeconds() * lookRate);
 }
+
