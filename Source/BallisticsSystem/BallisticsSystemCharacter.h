@@ -127,7 +127,7 @@ protected:
 
 	struct TouchData
 	{
-		TouchData() { bIsPressed = false; Location = FVector::ZeroVector; }
+		TouchData() { bIsPressed = false;Location=FVector::ZeroVector;}
 		bool bIsPressed;
 		ETouchIndex::Type FingerIndex;
 		FVector Location;
