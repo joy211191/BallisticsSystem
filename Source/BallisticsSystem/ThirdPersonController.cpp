@@ -68,10 +68,12 @@ void AThirdPersonController::SetupPlayerInputComponent(UInputComponent* PlayerIn
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 }
 
+void AThirdPersonController::OnFire()
+{
+}
 
 void AThirdPersonController::MoveForward(float value)
 {
-	forwardAxisValue = value;
 	if (FMath::Abs(value) > 0.5f)
 	{
 		AddMovementInput(GetActorForwardVector(), value);
