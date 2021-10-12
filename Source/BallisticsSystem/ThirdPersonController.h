@@ -26,7 +26,7 @@ public:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 		USceneComponent* FP_MuzzleLocation;
 
-	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 		USkeletalMeshComponent* FP_Gun;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
