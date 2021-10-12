@@ -71,19 +71,20 @@ void AThirdPersonController::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 void AThirdPersonController::MoveForward(float value)
 {
-	forwardAxisValue = value;
+	/*forwardAxisValue = value;
 	if (FMath::Abs(value) > 0.5f)
 	{
 		AddMovementInput(GetActorForwardVector(), value);
-	}
+	}*/
 }
 
 void AThirdPersonController::MoveRight(float value)
 {
+	/*rightAxisValue = value;
 	if (FMath::Abs(value) > 0.5f)
 	{
 		AddMovementInput(GetActorRightVector(), value);
-	}
+	}*/
 }
 
 void AThirdPersonController::TurnRate(float Rate)

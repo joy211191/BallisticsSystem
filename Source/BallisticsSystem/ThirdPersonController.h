@@ -52,6 +52,9 @@ public:
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 	float forwardAxisValue;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		float rightAxisValue;
+
 
 protected:
 	// Called when the game starts or when spawned
